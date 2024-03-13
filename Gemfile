@@ -73,3 +73,5 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "erb-formatter", "~> 0.7.2"
