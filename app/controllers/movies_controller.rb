@@ -8,6 +8,11 @@ class MoviesController < ApplicationController
 
   # GET /movies/1 or /movies/1.json
   def show
+    @rating = Rating.new
+    @previous_rating = Rating.find_by(user: current_user, movie: @movie)
+    puts "Current user: #{current_user.inspect}"
+    puts "Previous rating: #{@previous_rating.inspect}"
+    puts "Movie: #{@movie.inspect}"
   end
 
   # GET /movies/new
