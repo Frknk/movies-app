@@ -27,6 +27,8 @@ class MoviesController < ApplicationController
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
+    genre_ids = params[:movie][:genre_ids] || []
+    @movie.genres = Genre.where(id: genre_ids)
 
     respond_to do |format|
       if @movie.save
@@ -70,6 +72,6 @@ class MoviesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movie_params
-      params.require(:movie).permit(:title, :description)
+      params.require(:movie).permit(:title, :description, :cover)
     end
 end

@@ -11,7 +11,7 @@
 
     <%= render @movie %>
 
-    <% if @previous_rating.persisted? %>
+    <% if @previous_rating %>
       <p>Your Rating:
         <%= @previous_rating.value %></p>
     <% end %>
