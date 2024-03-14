@@ -1,11 +1,1 @@
-<h1>Hola</h1>
-<% if user_signed_in? %>
-  <%= link_to "Sign out",
-  destroy_user_session_path,
-  method: :delete,
-  data: {
-    turbo_method: :delete,
-  } %>
-<% else %>
-  <h1>Asd</h1>
-<% end %>
+<%= render "movies/otro" %>

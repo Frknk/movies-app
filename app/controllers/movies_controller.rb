@@ -10,9 +10,9 @@ class MoviesController < ApplicationController
   def show
     @rating = Rating.new
     @previous_rating = Rating.find_by(user: current_user, movie: @movie)
-    puts "Current user: #{current_user.inspect}"
-    puts "Previous rating: #{@previous_rating.inspect}"
-    puts "Movie: #{@movie.inspect}"
+    # puts "Current user: #{current_user.inspect}"
+    # puts "Previous rating: #{@previous_rating.inspect}"
+    # puts "Movie: #{@movie.inspect}"
   end
 
   # GET /movies/new
@@ -43,6 +43,8 @@ class MoviesController < ApplicationController
 
   # PATCH/PUT /movies/1 or /movies/1.json
   def update
+    genre_ids = params[:movie][:genre_ids] || []
+    @movie.genres = Genre.where(id: genre_ids)
     respond_to do |format|
       if @movie.update(movie_params)
         format.html { redirect_to movie_url(@movie), notice: "Movie was successfully updated." }
@@ -72,6 +74,6 @@ class MoviesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :cover)
+      params.require(:movie).permit(:title, :description, :cover, :video)
     end
 end

@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   end
 
   def home
+    @movies = Movie.all
     if !user_signed_in?
       redirect_to root_path
     else

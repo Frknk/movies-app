@@ -1,3 +1,68 @@
+<div id="<%= dom_id @movie %> mx-auto md:w-2/3 w-full flex">
+  <div
+    class="
+      max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800
+      dark:border-gray-700 mx-auto
+    "
+  >
+    <%= image_tag @movie.cover, class: "rounded-t-lg" %>
+    <div class="p-5">
+      <h5
+        class="
+          mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white
+        "
+      ><%= @movie.title %></h5>
+
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= @movie.description %></p>
+      <p>
+        <strong>Genres:</strong>
+        <% @movie.genres.each do |genre| %>
+          <%= genre.name %>
+        <% end %>
+      </p>
+      <%= video_tag url_for(@movie.video), controls: true %>
+
+      <div class="my-4">
+        <% if @previous_rating %>
+          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Your Rating:
+            <%= @previous_rating.value %></p>
+        <% end %>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Average Rating:
+          <%= @movie.ratings.average(:value) %></p>
+      </div>
+
+      <%= form_for [@movie, @rating] do |f| %>
+        <%= f.label :value,
+                class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+        <%= f.number_field :value,
+                       in: 1..5,
+                       class:
+                         "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+        <%= f.submit "Rate",
+                 class:
+                   "mt-4 w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+      <% end %>
+
+      <%= link_to "Back to movies",
+      "/home",
+      class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+      <% if current_user.email == "test@email.com" %>
+        <%= link_to "Edit this movie",
+        edit_movie_path(@movie),
+        class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <div class="inline-block ml-2">
+          <%= button_to "Destroy this movie",
+          movie_path(@movie),
+          method: :delete,
+          class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+<!--
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
     <% if notice.present? %>
@@ -9,20 +74,7 @@
       ><%= notice %></p>
     <% end %>
 
-    <%= render @movie %>
-
-    <% if @previous_rating %>
-      <p>Your Rating:
-        <%= @previous_rating.value %></p>
-    <% end %>
-    <p>Average Rating:
-      <%= @movie.ratings.average(:value) %></p>
-
-    <%= form_for [@movie, @rating] do |f| %>
-      <%= f.label :value %>
-      <%= f.number_field :value, in: 1..5 %>
-      <%= f.submit "Rate" %>
-    <% end %>
+    <%# render @movie %>
 
     <%= link_to "Edit this movie",
     edit_movie_path(@movie),
@@ -38,3 +90,4 @@
     class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   </div>
 </div>
+-->
