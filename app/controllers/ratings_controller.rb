@@ -1,4 +1,3 @@
-# app/controllers/ratings_controller.rb
 class RatingsController < ApplicationController
   def create
     @movie = Movie.find(params[:movie_id])
@@ -18,3 +17,4 @@ class RatingsController < ApplicationController
     params.require(:rating).permit(:value)
   end
 end
+

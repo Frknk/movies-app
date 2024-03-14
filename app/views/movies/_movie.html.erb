@@ -13,16 +13,17 @@
         "
       ><%= movie.title %></h5>
 
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><%= movie.description %></p>
+      <p class="mb-3 font-normal tex t-gray-700 dark:text-gray-400"><%= movie.description %></p>
       <p>
-        <strong>Genres:</strong>
+        <strong class="mb-3 font-bold text-gray-700 dark:text-gray-400">Genres:</strong>
         <% movie.genres.each do |genre| %>
-          <%= genre.name %>
+          <p class="font-normal text-gray-700 dark:text-gray-400"><%= genre.name %></p>
         <% end %>
       </p>
       <%= link_to "Show this movie",
       movie,
-      class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+      class:
+        "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
       <!--
       <% if action_name != "show" %>
         <%= link_to "Show this movie",
