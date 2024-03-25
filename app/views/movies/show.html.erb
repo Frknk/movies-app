@@ -20,8 +20,11 @@
           <%= genre.name %>
         <% end %>
       </p>
-      <%= video_tag url_for(@movie.video), controls: true %>
-
+      <% if @movie.video.present? %>
+        <%= video_tag url_for(@movie.video), controls: true %>
+      <% else %>
+        <p>No video available for this movie.</p>
+      <% end %>
       <div class="my-4">
         <% if @previous_rating %>
           <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Your Rating:
