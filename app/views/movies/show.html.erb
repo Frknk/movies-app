@@ -5,7 +5,9 @@
       dark:border-gray-700 mx-auto
     "
   >
+    <% if @movie.cover.present? %>
     <%= image_tag @movie.cover, class: "rounded-t-lg" %>
+    <% end %>
     <div class="p-5">
       <h5
         class="
