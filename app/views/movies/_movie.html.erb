@@ -5,7 +5,12 @@
       dark:border-gray-700
     "
   >
+    <% if movie.cover.present? %>
     <%= image_tag movie.cover, class: "rounded-t-lg" %>
+    <% else %>
+    <p>No cover available for this movie.</p>
+    <% end%>
+    
     <div class="p-5">
       <h5
         class="
