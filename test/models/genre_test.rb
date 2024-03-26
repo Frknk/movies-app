@@ -1,7 +1,9 @@
 require "test_helper"
 
 class GenreTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "pertenecer a varias movies" do
+    genre = Genre.new
+    assert_respond_to genre, :movies
+  end
+
 end
